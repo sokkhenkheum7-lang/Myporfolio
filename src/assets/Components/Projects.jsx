@@ -1,3 +1,5 @@
+import React from "react";
+import { motion } from "framer-motion";
 
 export default function Projects() {
   const projects = [
@@ -15,7 +17,7 @@ export default function Projects() {
       title: "Apple Clone",
       description:
         "A sleek and modern Apple website clone built with React.js and Tailwind CSS, featuring responsive design and smooth animations.",
-      image: "/apple.jpg",
+      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBI-DSHhctZ9Jx-uR_MSXz2AsvEuFuoNs12MJmfE4EYKeUjTAelVN-5xQ&s=10",
       tech: ["React.js", "Tailwind CSS", "JavaScript"],
       github: "#",
       live: "https://apple-kheum-sokkhen.vercel.app/",
@@ -25,7 +27,7 @@ export default function Projects() {
       title: "Zando E-Commerce",
       description:
         "An e-commerce website inspired by Zando featuring responsive layouts, product listings, filtering, and a modern shopping experience.",
-      image: "/zando.jpg",
+      image: "https://bongsrey.sgp1.digitaloceanspaces.com/library/937/images/LogoZandoblack.jpg",
       tech: ["React.js", "Tailwind CSS", "JavaScript"],
       github: "#",
       live: "https://zando-clone-nextgenit.vercel.app/",
@@ -40,36 +42,81 @@ export default function Projects() {
       figma: "https://www.figma.com/design/aPmmDvkFzXE2U0cAoJN5n5/flutter?node-id=0-1&p=f&t=bHNIQhP1FrrPfS7M-0", 
       type: "figma",
     },
+    {
+      title: "StepUpShoesApp",
+      description:
+        "A modern Figma UI/UX design for a shoe brand, featuring a clean and minimalist interface with a strong focus on user experience.",
+      image: "https://i.pinimg.com/736x/b4/40/48/b440485de58817f4a6827f86a4c79a96.jpg",
+      tech: ["Figma", "UI/UX Design"],
+      figma: "https://www.figma.com/design/pAjLyr2emDK7VIuaxTEbrz/StepUpShoesApp?node-id=0-1&t=sUpywxYsSmpQsAha-1", 
+      type: "figma",
+    },
+    {
+      title: "Elévance Web Design",
+      description:
+        "A moder n Figma UI/UX design for a luxury brand, featuring a clean and minimalist interface with a strong focus on user experience.",
+      image: "/Sign Up.png",
+      tech: ["Figma", "UI/UX Design"],
+      figma: "https://www.figma.com/design/q46tRk4thBUcXCP2U1YfLw/El%C3%A9vance-Web?node-id=2370-4138&t=C3Nw6joOT2Z5RYyo-1", 
+      type: "figma",
+    },
   ];
 
+  // Animation configuration for scroll reveals
+  const fadeUpVariant = {
+    hidden: { opacity: 0, y: 40 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
+  };
+
+  const staggerContainer = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.15 },
+    },
+  };
+
   return (
-    <section id="projects" className="py-24 bg-slate-50">
-      <div className="max-w-7xl mx-auto px-6">
+    <section id="projects" className="py-20 bg-gray-100">
+      <div className="max-w-7xl mx-auto px-6 lg:px-14 pt-30 ">
+        
         {/* Section Header */}
-        <div className="text-center">
-          <span className="inline-block px-4 py-2 rounded-full bg-red-100 text-red-600 font-semibold text-sm">
-            My Projects
+        <motion.div 
+          className="text-center"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: false, amount: 0.2 }}
+          variants={fadeUpVariant}
+        >
+          <span className="inline-block px-4 py-2 rounded-full bg-blue-100 text-blue-600 font-semibold text-sm">
+            My Projects Experience 
           </span>
 
           <h2 className="mt-5 text-4xl md:text-5xl font-extrabold text-gray-900 tracking-tight">
-            Featured{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-orange-500">
-              Projects
+            Featured Projects in Frontend {" "}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-500">
+              Development <br/> and UI/UX Design
             </span>
           </h2>
 
           <p className="mt-6 text-gray-500 max-w-2xl mx-auto text-lg leading-relaxed">
-            Here are some of the projects I have built using React.js,
-            Tailwind CSS, JavaScript, and Figma.
+            Explore a selection of my recent projects, showcasing my skills in frontend development and UI/UX design. Each project highlights my ability to create modern, responsive, and user-friendly web applications.
           </p>
-        </div>
+        </motion.div>
 
         {/* Projects */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mt-16">
+        <motion.div 
+          className="grid md:grid-cols-3 lg:grid-cols-3 gap-6 mt-10"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: false, amount: 0.1 }}
+          variants={staggerContainer}
+        >
           {projects.map((project, index) => (
-            <div
+            <motion.div
               key={index}
-              className="bg-white rounded-3xl overflow-hidden shadow-lg border border-gray-100 hover:shadow-2xl transition-all duration-300 group hover:-translate-y-2"
+              variants={fadeUpVariant}
+              className="bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100 hover:shadow-2xl transition-all duration-300 group hover:-translate-y-2 mt-6"
             >
               {/* Project Image */}
               <div className="overflow-hidden relative">
@@ -138,11 +185,10 @@ export default function Projects() {
                   )}
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
 }
-
