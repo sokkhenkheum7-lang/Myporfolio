@@ -39,7 +39,7 @@ export default function Projects() {
         "A modern Figma UI/UX design for a skin care brand, featuring a clean and minimalist interface with a strong focus on user experience.",
       image: "/skincare.jpg",
       tech: ["Figma", "UI/UX Design"],
-      figma: "https://www.figma.com/design/aPmmDvkFzXE2U0cAoJN5n5/flutter?node-id=0-1&p=f&t=bHNIQhP1FrrPfS7M-0", 
+      figma: "https://www.figma.com/design/aPmmDvkFzXE2U0cAoJN5n5/flutter?node-id=0-1&p=f&t=bHNIQhP1FrrPfS7M-0",
       type: "figma",
     },
     {
@@ -48,7 +48,7 @@ export default function Projects() {
         "A modern Figma UI/UX design for a shoe brand, featuring a clean and minimalist interface with a strong focus on user experience.",
       image: "https://i.pinimg.com/736x/b4/40/48/b440485de58817f4a6827f86a4c79a96.jpg",
       tech: ["Figma", "UI/UX Design"],
-      figma: "https://www.figma.com/design/pAjLyr2emDK7VIuaxTEbrz/StepUpShoesApp?node-id=0-1&t=sUpywxYsSmpQsAha-1", 
+      figma: "https://www.figma.com/design/pAjLyr2emDK7VIuaxTEbrz/StepUpShoesApp?node-id=0-1&t=sUpywxYsSmpQsAha-1",
       type: "figma",
     },
     {
@@ -57,7 +57,7 @@ export default function Projects() {
         "A moder n Figma UI/UX design for a luxury brand, featuring a clean and minimalist interface with a strong focus on user experience.",
       image: "/Sign Up.png",
       tech: ["Figma", "UI/UX Design"],
-      figma: "https://www.figma.com/design/q46tRk4thBUcXCP2U1YfLw/El%C3%A9vance-Web?node-id=2370-4138&t=C3Nw6joOT2Z5RYyo-1", 
+      figma: "https://www.figma.com/design/q46tRk4thBUcXCP2U1YfLw/El%C3%A9vance-Web?node-id=2370-4138&t=C3Nw6joOT2Z5RYyo-1",
       type: "figma",
     },
   ];
@@ -77,36 +77,41 @@ export default function Projects() {
   };
 
   return (
-    <section id="projects" className="py-20 bg-gray-100">
-      <div className="max-w-7xl mx-auto px-6 lg:px-14 pt-30 ">
-        
+    <section id="projects" className="relative py-20 bg-slate-50 overflow-hidden">
+      
+      {/* Subtle Ambient Background */}
+      <div className="absolute top-1/4 -right-40 w-96 h-96 bg-blue-200/20 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-1/4 -left-40 w-96 h-96 bg-purple-200/20 rounded-full blur-3xl pointer-events-none" />
+
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-14 pt-10">
+
         {/* Section Header */}
-        <motion.div 
+        <motion.div
           className="text-center"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: false, amount: 0.2 }}
           variants={fadeUpVariant}
         >
-          <span className="inline-block px-4 py-2 rounded-full bg-blue-100 text-blue-600 font-semibold text-sm">
-            My Projects Experience 
+          <span className="inline-block px-4 py-2 rounded-full bg-blue-100/80 text-blue-700 font-semibold text-xs sm:text-sm backdrop-blur-sm">
+            My Projects Experience
           </span>
 
-          <h2 className="mt-5 text-4xl md:text-5xl font-extrabold text-gray-900 tracking-tight">
-            Featured Projects in Frontend {" "}
+          <h2 className="mt-5 text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 tracking-tight leading-tight">
+            Featured Projects in Frontend <br className="hidden sm:block" />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-500">
-              Development <br/> and UI/UX Design
+              Development & UI/UX Design
             </span>
           </h2>
 
-          <p className="mt-6 text-gray-500 max-w-2xl mx-auto text-lg leading-relaxed">
+          <p className="mt-4 sm:mt-6 text-gray-500 max-w-2xl mx-auto text-sm sm:text-lg leading-relaxed px-2">
             Explore a selection of my recent projects, showcasing my skills in frontend development and UI/UX design. Each project highlights my ability to create modern, responsive, and user-friendly web applications.
           </p>
         </motion.div>
 
-        {/* Projects */}
-        <motion.div 
-          className="grid md:grid-cols-3 lg:grid-cols-3 gap-6 mt-10"
+        {/* Projects Grid: Forced to 2 columns on mobile, 3 on desktop */}
+        <motion.div
+          className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6 mt-10 sm:mt-14"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: false, amount: 0.1 }}
@@ -116,50 +121,52 @@ export default function Projects() {
             <motion.div
               key={index}
               variants={fadeUpVariant}
-              className="bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100 hover:shadow-2xl transition-all duration-300 group hover:-translate-y-2 mt-6"
+              className="flex flex-col bg-white/90 backdrop-blur-md rounded-xl sm:rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl border border-slate-200/60 transition-all duration-300 group hover:-translate-y-1.5"
             >
-              {/* Project Image */}
-              <div className="overflow-hidden relative">
+              {/* Project Image - height shrinks on mobile to fit 2 cols */}
+              <div className="overflow-hidden relative w-full h-32 sm:h-48 md:h-60">
                 <img
                   src={project.image}
                   alt={project.title}
-                  className="w-full h-60 object-cover group-hover:scale-110 transition-transform duration-500"
+                  className="w-full h-full object-cover object-top group-hover:scale-110 transition-transform duration-500"
                 />
               </div>
 
               {/* Project Content */}
-              <div className="p-8">
-                <h3 className="text-2xl font-bold text-gray-900">
+              <div className="flex flex-col flex-grow p-4 sm:p-6 md:p-8">
+                
+                {/* Titles shrink and truncate on small screens */}
+                <h3 className="text-base sm:text-xl md:text-2xl font-bold text-gray-900 line-clamp-1 group-hover:text-blue-600 transition-colors">
                   {project.title}
                 </h3>
 
-                <p className="text-gray-500 mt-4 leading-relaxed text-sm">
+                <p className="text-gray-500 mt-2 md:mt-4 leading-relaxed text-[11px] sm:text-sm line-clamp-2 md:line-clamp-3">
                   {project.description}
                 </p>
 
                 {/* Technologies */}
-                <div className="flex flex-wrap gap-2 mt-6">
+                <div className="flex flex-wrap gap-1.5 sm:gap-2 mt-4 md:mt-6">
                   {project.tech.map((tech, i) => (
                     <span
                       key={i}
-                      className="px-3 py-1.5 rounded-full bg-slate-100 text-gray-700 border border-gray-200 text-xs font-semibold tracking-wide"
+                      className="px-2 py-1 sm:px-3 sm:py-1.5 rounded-lg bg-slate-50 text-slate-700 border border-slate-200/80 text-[9px] sm:text-xs font-semibold tracking-wide"
                     >
                       {tech}
                     </span>
                   ))}
                 </div>
 
-                {/* Buttons */}
-                <div className="flex gap-4 mt-8">
+                {/* Buttons - Stack vertically on mobile, row on tablet/desktop */}
+                <div className="flex flex-col xl:flex-row gap-2 sm:gap-4 mt-auto pt-4 md:pt-8">
                   {project.type === "figma" ? (
                     // Figma Project
                     <a
                       href={project.figma}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="w-full text-center bg-gray-900 text-white px-4 py-3 rounded-xl hover:bg-gray-800 transition-colors text-sm font-medium shadow-md"
+                      className="w-full text-center bg-gray-900 text-white px-3 py-2.5 sm:px-4 sm:py-3 rounded-lg sm:rounded-xl hover:bg-gray-800 transition-colors text-xs sm:text-sm font-medium shadow-md"
                     >
-                      View Figma Design ↗
+                      View Figma ↗
                     </a>
                   ) : (
                     // Coding Projects
@@ -168,18 +175,18 @@ export default function Projects() {
                         href={project.github}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex-1 text-center bg-gray-900 text-white px-4 py-3 rounded-xl hover:bg-gray-800 transition-colors text-sm font-medium shadow-md"
+                        className="w-full xl:flex-1 text-center bg-gray-900 text-white px-3 py-2.5 sm:px-4 sm:py-3 rounded-lg sm:rounded-xl hover:bg-gray-800 transition-colors text-xs sm:text-sm font-medium shadow-md"
                       >
-                        Code Repository
+                        Code
                       </a>
 
                       <a
                         href={project.live}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex-1 text-center border-2 border-red-100 bg-red-50 text-red-600 px-4 py-3 rounded-xl hover:bg-red-600 hover:text-white hover:border-red-600 transition-all text-sm font-medium shadow-sm"
+                        className="w-full xl:flex-1 text-center border-2 border-blue-100 bg-blue-50 text-blue-600 px-3 py-2.5 sm:px-4 sm:py-3 rounded-lg sm:rounded-xl hover:bg-blue-600 hover:text-white hover:border-blue-600 transition-all text-xs sm:text-sm font-medium shadow-sm"
                       >
-                        Live Demo ↗
+                        Demo ↗
                       </a>
                     </>
                   )}
